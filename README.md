@@ -1,53 +1,69 @@
-# Football Player Valuation
+# Football Player Valuation Project
+
+## Overview
+This project focuses on predicting football player market values using machine learning. It analyzes factors like age, position, performance stats, and league quality to estimate player valuations. The project includes data processing, exploratory analysis, model training, and a Streamlit web app for predictions.
 
 ## Objectives
-  This project will mainly focuses on how player's certain factors like Age, Position, Country and so on will affect the player's market value and it'll also predict the player's market value in the future. I chose this project because obviously i'm interested in this football and that kind of stuff and also i feel like it'll describe who i am and also showcasing my skills to potential employer. Looking forward to finish this wonderful project and i think it'll be a great experience.
+- Predict player market values based on profile and stats
+- Identify key factors influencing valuations
+- Build an interactive dashboard for scouting
 
-## Success Metric
-  R2 (R square), RMSE (Root Mean Squared Error) for valuation prediction metrics.
+## Success Metrics
+- R² Score: Measure of explained variance
+- MAE/RMSE: Prediction accuracy in euros
 
 ## Dataset
-  Kaggle Dataset link: https://www.kaggle.com/datasets/davidcariboo/player-scores/code
+Source: [Kaggle Player Scores Dataset](https://www.kaggle.com/datasets/davidcariboo/player-scores/code)
+
+## Project Structure
+```
+football_valuation_project/
+├── data/
+│   ├── raw/           # Raw CSV files (players.csv, appearances.csv, etc.)
+│   └── processed/     # Cleaned and processed data (model_ready_selected.csv, datascience_ready.csv)
+├── src/               # Source code
+│   ├── data_loader.py # Data loading functions
+│   ├── train_xgboost.py # Model training script
+│   └── ui.py          # UI utilities for Streamlit
+├── models/            # Trained models and feature lists (xgboost_model.pkl, etc.)
+├── notebooks/         # Jupyter notebooks for EDA and modeling
+├── app/               # Streamlit app pages
+├── images/            # Images for README or app
+├── Home.py            # Main Streamlit app entry point
+└── README.md          # This file
+```
 
 ## Process Overview
-  Project's structure of process is as follows:
-  1) Data cleaning
-  2) EDA and Feature enginnering
-  3) Feature selection
-  4) Model building
-  5) Evaluation and insights
+1. **Data Cleaning**: Merged datasets, handled missing values, feature engineering
+2. **EDA**: Explored distributions, correlations, created visualizations
+3. **Feature Selection**: Identified impactful predictors
+4. **Model Building**: Trained XGBoost regressor with hyperparameter tuning
+5. **Evaluation**: Assessed performance with R², MAE, RMSE
+6. **Deployment**: Built Streamlit app for predictions
 
-### 1) Data cleaning:
- -  Cleaned over 1000000 fields of combined data from the required CSV files ('players.csv', 'appearances.csv', 'player_valuations.csv') for this specific project.
- -  Handled various fields of missing values, removed duplicate data, adding some features into our dataset.
- -  Standardize the data types.
- -  Removed fields which are not necessary for this project (like past players who are retired, above age 40, and some more criteria)
- -  Standardize the competition id for the model to predict.
-
-### 2) EDA and Feature engineering:
- -  Explored correlations,distributions, and created meaningful features.
-
-### 3) Feature selection:
- -  Identified the most relevant predictors impacting market value.
- -  Retained the most influential features that impact the market value analysis.
-
-### 4) Model building
- -  Split the dataset into training and testing sets to evaluate.
- -  Tuned hyperparameters and cross-validated models to achieve the best performance balance.
-
-### 5) Evaluation and insights
- -  Evaluated models using R², MAE, and RMSE metrics.
- -  Interpreted results to understand which features most strongly influence player valuation.
-
- ## Tools and Libraries
-  1) Python
-  2) Pandas
-  3) Numpy
-  4) Seaborn
-  5) Matplotlib
-  6) Scikit-learn
+## Tools and Libraries
+- Python
+- Pandas, NumPy
+- Scikit-learn, XGBoost
+- Matplotlib, Seaborn, Plotly
+- Streamlit
+- Jupyter
 
 ## Results Summary
+- **R² Score**: 0.52
+- **MAE**: €1,462,334
+- **RMSE**: €5,117,841
+
+## Getting Started
+1. Clone the repo
+2. Install dependencies: `pip install -r requirements.txt`
+3. Run the app: `streamlit run Home.py`
+4. Train model: `python src/train_xgboost.py`
+
+## Future Improvements
+- Add more features (social media, advanced stats)
+- Try neural networks
+- Deploy to cloud
  Best model: Random Forest Regressor
  Matrics:
   R² Score: 0.6230

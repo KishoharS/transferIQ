@@ -11,10 +11,10 @@ apply_custom_style()
 render_sidebar()
 
 model = joblib.load(
-    "/Users/kishohars/Projects/football_valuation_project/models/xgboost_model.pkl"
+    "models/xgboost_model.pkl"
 )
 features = joblib.load(
-    "/Users/kishohars/Projects/football_valuation_project/models/xgboost_features.pkl"
+    "models/xgboost_features.pkl"
 )
 
 st.title("⚽ Smart Scout Dashboard")
