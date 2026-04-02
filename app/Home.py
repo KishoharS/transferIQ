@@ -1,3 +1,6 @@
+import sys, os
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
+
 import joblib
 import numpy as np
 import pandas as pd
@@ -11,10 +14,10 @@ apply_custom_style()
 render_sidebar()
 
 model = joblib.load(
-    "models/xgboost_model.pkl"
+    "/Users/kishohars/Projects/football_valuation_project/models/catboost_model.pkl"
 )
 features = joblib.load(
-    "models/xgboost_features.pkl"
+    "/Users/kishohars/Projects/football_valuation_project/models/catboost_features.pkl"
 )
 
 st.title("⚽ Smart Scout Dashboard")
@@ -37,7 +40,7 @@ with col_c:
 st.markdown("---")
 
 with st.container():
-    st.subheader("💡 Market Value Estimator (XGBoost)")
+    st.subheader("💡 Market Value Estimator (CatBoost)")
     st.info(
         "Predict the theoretical market value of a player based on their stats and profile."
     )
