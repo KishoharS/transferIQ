@@ -1,10 +1,15 @@
 import sys, os
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
-
 import joblib
 import numpy as np
 import pandas as pd
 import streamlit as st
+
+# 1. Get the absolute path to the directory where Home.py lives
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
+# 2. Build the full path to your model files
+model_path = os.path.join(BASE_DIR, "models", "catboost_model.pkl")
+feature_path = os.path.join(BASE_DIR, "models", "catboost_features.pkl")
 
 from src.data_loader import load_players, load_transfers
 from src.ui import apply_custom_style, render_sidebar
@@ -13,16 +18,11 @@ st.set_page_config(page_title="Smart Scout", layout="wide", page_icon="⚽")
 apply_custom_style()
 render_sidebar()
 
-# Get the directory where Home.py is located
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-
-# Navigate up one level to the root, then into 'models'
-# Use this if 'models' is outside the 'app' folder
-model_path = os.path.join(BASE_DIR, "..", "models", "catboost_model.pkl")
-feature_path = os.path.join(BASE_DIR, "..", "models", "catboost_features.pkl")
-
+# 3. Load the files using the absolute paths
 model = joblib.load(model_path)
 features = joblib.load(feature_path)
+
+# ... rest of your code ...
 
 st.title("⚽ Smart Scout Dashboard")
 st.markdown("### The future of AI-driven football scouting.")
