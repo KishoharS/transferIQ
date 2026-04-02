@@ -13,12 +13,16 @@ st.set_page_config(page_title="Smart Scout", layout="wide", page_icon="⚽")
 apply_custom_style()
 render_sidebar()
 
-model = joblib.load(
-    "/Users/kishohars/Projects/football_valuation_project/models/catboost_model.pkl"
-)
-features = joblib.load(
-    "/Users/kishohars/Projects/football_valuation_project/models/catboost_features.pkl"
-)
+# Get the directory where Home.py is located
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
+# Navigate up one level to the root, then into 'models'
+# Use this if 'models' is outside the 'app' folder
+model_path = os.path.join(BASE_DIR, "..", "models", "catboost_model.pkl")
+feature_path = os.path.join(BASE_DIR, "..", "models", "catboost_features.pkl")
+
+model = joblib.load(model_path)
+features = joblib.load(feature_path)
 
 st.title("⚽ Smart Scout Dashboard")
 st.markdown("### The future of AI-driven football scouting.")
