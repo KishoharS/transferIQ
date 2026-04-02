@@ -2,53 +2,35 @@ import streamlit as st
 import pandas as pd
 import os
 
-# 1. Get the absolute path of the 'src' directory
-# This will be /mount/src/transferiq/src on Streamlit Cloud
+# data_loader.py is inside src/, so go up one level to project root
 SRC_DIR = os.path.dirname(os.path.abspath(__file__))
-
-# 2. Go up one level to the project root (transferiq)
 BASE_DIR = os.path.dirname(SRC_DIR)
 
-# 3. Path to your data folder
-# This ensures we look in /mount/src/transferiq/data
-DATA_DIR = os.path.join(BASE_DIR, 'data')
+PROCESSED_DIR = os.path.join(BASE_DIR, 'data', 'processed')
+RAW_DIR = os.path.join(BASE_DIR, 'data', 'raw')
 
 @st.cache_data
 def load_players():
-    """Loads the players.csv dataset."""
-    path = os.path.join(DATA_DIR, 'players.csv')
-    return pd.read_csv(path)
+    return pd.read_csv(os.path.join(RAW_DIR, 'players.csv'))
 
 @st.cache_data
 def load_clubs():
-    """Loads the clubs.csv dataset."""
-    path = os.path.join(DATA_DIR, 'clubs.csv')
-    return pd.read_csv(path)
+    return pd.read_csv(os.path.join(RAW_DIR, 'clubs.csv'))
 
 @st.cache_data
 def load_transfers():
-    """Loads the transfers.csv dataset."""
-    path = os.path.join(DATA_DIR, 'transfers.csv')
-    return pd.read_csv(path)
+    return pd.read_csv(os.path.join(RAW_DIR, 'transfers.csv'))
 
 @st.cache_data
 def load_valuations():
-    """Loads the player_valuations.csv dataset."""
-    path = os.path.join(DATA_DIR, 'player_valuations.csv')
-    return pd.read_csv(path)
+    return pd.read_csv(os.path.join(RAW_DIR, 'player_valuations.csv'))
 
 @st.cache_data
 def load_events(limit=None):
-    """Loads game_events.csv."""
-    path = os.path.join(DATA_DIR, 'game_events.csv')
-    if limit:
-        return pd.read_csv(path, nrows=limit)
-    return pd.read_csv(path)
+    path = os.path.join(RAW_DIR, 'game_events.csv')
+    return pd.read_csv(path, nrows=limit) if limit else pd.read_csv(path)
 
 @st.cache_data
 def load_appearances(limit=None):
-    """Loads appearances.csv."""
-    path = os.path.join(DATA_DIR, 'appearances.csv')
-    if limit:
-        return pd.read_csv(path, nrows=limit)
-    return pd.read_csv(path)
+    path = os.path.join(RAW_DIR, 'appearances.csv')
+    return pd.read_csv(path, nrows=limit) if limit else pd.read_csv(path)

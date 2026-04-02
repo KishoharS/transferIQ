@@ -1,8 +1,11 @@
+import sys, os
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+sys.path.append(os.path.join(BASE_DIR, "src"))
+
 import plotly.graph_objects as go
 import streamlit as st
-
-from src.data_loader import load_players, load_transfers, load_valuations
-from src.ui import apply_custom_style, render_sidebar
+from data_loader import load_players, load_transfers, load_valuations
+from ui import apply_custom_style, render_sidebar
 
 st.set_page_config(page_title="Transfer Market Analysis", layout="wide", page_icon="💰")
 apply_custom_style()

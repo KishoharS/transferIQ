@@ -4,16 +4,17 @@ import numpy as np
 import pandas as pd
 import streamlit as st
 
-# Get directory of Home.py (/mount/src/transferiq/app)
-CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
-# Go up to root (/mount/src/transferiq)
-ROOT_DIR = os.path.dirname(CURRENT_DIR)
+# Home.py is inside app/, so go up one level to project root
+APP_DIR = os.path.dirname(os.path.abspath(__file__))
+BASE_DIR = os.path.dirname(APP_DIR)
 
-# Build paths
-model_path = os.path.join(ROOT_DIR, "models", "catboost_model.pkl")
-feature_path = os.path.join(ROOT_DIR, "models", "catboost_features.pkl")
+# Add src/ to path so the import works
+sys.path.append(os.path.join(BASE_DIR, "src"))
+from data_loader import load_players, load_transfers
 
-# Load
+model_path = os.path.join(BASE_DIR, "models", "catboost_model.pkl")
+feature_path = os.path.join(BASE_DIR, "models", "catboost_features.pkl")
+
 model = joblib.load(model_path)
 features = joblib.load(feature_path)
 

@@ -1,10 +1,13 @@
+import sys, os
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+sys.path.append(os.path.join(BASE_DIR, "src"))
+
 import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
 import streamlit as st
-
-from src.data_loader import load_appearances, load_events, load_players
-from src.ui import apply_custom_style, render_sidebar
+from data_loader import load_appearances, load_events, load_players
+from ui import apply_custom_style, render_sidebar
 
 st.set_page_config(page_title="Player Performance", layout="wide", page_icon="🏃")
 apply_custom_style()
