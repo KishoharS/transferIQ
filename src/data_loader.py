@@ -2,14 +2,15 @@ import streamlit as st
 import pandas as pd
 import os
 
-# 1. Determine the path to the 'src' folder where this file lives
+# 1. Get the absolute path of the 'src' directory
+# This will be /mount/src/transferiq/src on Streamlit Cloud
 SRC_DIR = os.path.dirname(os.path.abspath(__file__))
 
 # 2. Go up one level to the project root (transferiq)
 BASE_DIR = os.path.dirname(SRC_DIR)
 
-# 3. Define the path to your data folder
-# Note: Ensure your CSVs are directly inside the 'data' folder on GitHub
+# 3. Path to your data folder
+# This ensures we look in /mount/src/transferiq/data
 DATA_DIR = os.path.join(BASE_DIR, 'data')
 
 @st.cache_data
