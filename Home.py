@@ -1,21 +1,23 @@
+import sys, os
 import joblib
 import numpy as np
 import pandas as pd
 import streamlit as st
 
-from src.data_loader import load_players, load_transfers
-from src.ui import apply_custom_style, render_sidebar
+# Get directory of Home.py (/mount/src/transferiq/app)
+CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
+# Go up to root (/mount/src/transferiq)
+ROOT_DIR = os.path.dirname(CURRENT_DIR)
 
-st.set_page_config(page_title="Smart Scout", layout="wide", page_icon="⚽")
-apply_custom_style()
-render_sidebar()
+# Build paths
+model_path = os.path.join(ROOT_DIR, "models", "catboost_model.pkl")
+feature_path = os.path.join(ROOT_DIR, "models", "catboost_features.pkl")
 
-model = joblib.load(
-    "models/xgboost_model.pkl"
-)
-features = joblib.load(
-    "models/xgboost_features.pkl"
-)
+# Load
+model = joblib.load(model_path)
+features = joblib.load(feature_path)
+
+# ... rest of your code ...
 
 st.title("⚽ Smart Scout Dashboard")
 st.markdown("### The future of AI-driven football scouting.")
@@ -37,7 +39,7 @@ with col_c:
 st.markdown("---")
 
 with st.container():
-    st.subheader("💡 Market Value Estimator (XGBoost)")
+    st.subheader("💡 Market Value Estimator (CatBoost)")
     st.info(
         "Predict the theoretical market value of a player based on their stats and profile."
     )
