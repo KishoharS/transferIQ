@@ -9,4 +9,4 @@ data/processed/*.csv
 __pycache__/
 data/
 catboost_info/
-*.ipynb_checkpoints/
+*.ipynb_checkpoints/.vscode/
