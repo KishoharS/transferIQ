@@ -4,7 +4,9 @@ data/raw/
 data/processed/*.csv
 .DS_Store
 **/dataset/
-models/
 *.pkl
 .venv/
 __pycache__/
+data/
+catboost_info/
+*.ipynb_checkpoints/
